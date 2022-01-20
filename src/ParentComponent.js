@@ -1,5 +1,6 @@
 import { Component } from "react";
 import SimpleComponent from "./SimpleComponent";
+import PureComp from "./PureComponent";
 
 class ParentComponent extends Component {
     constructor(props) {
@@ -10,14 +11,14 @@ class ParentComponent extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-         console.log('je suis dans shouldComponentUpdate ');
+         console.log('shouldComponentUpdate() décide TRUE');
 
-         console.log(this.state.name);
-         console.log(nextState);
-         if ( this.state.name !== nextState.name) {
-             return true;
-         }
-         return false;
+         /*console.log(this.state.name);
+         console.log(nextState);*/
+       // if ( this.state.name !== nextState.name) {
+         //    return true;
+           //  }
+         return true;
     }
 
     changeToBatman = () => {
@@ -30,7 +31,8 @@ class ParentComponent extends Component {
         console.log('%c RENDER() DU COMPOSANT PARENT', 'color: red')
         return (
             <div>
-                <SimpleComponent />
+                <SimpleComponent name={this.state.name}/>
+                <PureComp name={this.state.name} />
                 <button onClick={this.changeToBatman}>Changer en batMan</button>
             </div>
         );
