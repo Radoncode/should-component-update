@@ -7,7 +7,10 @@ class SimpleComponent extends Component {
         console.log('%c render() du composant enfant simple', 'color: blue')
         return (
             <div>
-                Bonjour
+                <p>
+                    <span className="blue">Simple Component: </span>
+                    {this.props.name}
+                </p>
             </div>
         );
     }
